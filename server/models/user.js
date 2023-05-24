@@ -6,6 +6,7 @@ const UserSchema = new mongoose.Schema({
     fname: {type: String, required: true},
     mname: {type: String, required: false},
     lname: {type: String, required: true},
+    suffix: {type: String, required: false},
     studentno: {type: String, required: true},
     userType: {type: String, enum: ["student", "approver", "admin"], required: true},
     email: {type: String, required: true},
