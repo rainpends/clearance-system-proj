@@ -1,39 +1,35 @@
-const express = require("express")
-const cookieParser = require("cookie-parser")
-const mongoose = require("mongoose")
+import express from "express";
+import cookieParser from "cookie-parser";
+import mongoose from "mongoose";
 
-//  connect to MongoDB
-mongoose.connect(
-    "mongodb://localhost:27017/clearance-sys",
-    { useNewUrlParser: true , useUnifiedTopology: true },
-    (err) => {
-        if(err) { console.log(err) }
-        else {console.log("Successfully connected to MongoDB")}
-    }
-)
+// import UserSchema from "./models/user.js";
+import "./models/user.js";
+import setUpRoutes from "./routes.js";
 
-// register user model with Mongoose
-require("./models/user")
+// connect to Mongo DB
+await mongoose.connect("mongodb://127.0.0.1:27017/clearance-sys");
+
+// register User model with Mongoose
+// mongoose.model("User", UserSchema);
+
 
 // initialize the server
-const app = express()
-app.use(express.urlEncoded({extended: true}))
-app.use(express.json())
-app.use(cookieParser())
+const app = express();
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(cookieParser());
 
+// allow CORS
 app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000")
-    res.setHeader("Access-Control-Allow-Methods", ["GET", "POST"])
-    res.setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Access-Control-Allow-Methods, Origin, Accept, Content-Type")
-    res.setHeader("Access-Control-Allow-Credentials", "true")
-    next()
-})
+  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+  res.setHeader("Access-Control-Allow-Methods", "GET,OPTIONS,POST");
+  res.setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers,Access-Control-Allow-Methods,Origin,Accept,Content-Type,X-Requested-With,Cookie");
+  res.setHeader("Access-Control-Allow-Credentials","true");
+  next();
+});
 
-// declare routes
-require("./routes")(app)
+// setup routes
+setUpRoutes(app);
 
 // start server
-app.listen(3001, (err) => {
-    if(err) {console.log(err)}
-    else {console.log("Server listening at port 3001")}
-})
+app.listen(3001, () => { console.log("API listening to port 3001 ")});

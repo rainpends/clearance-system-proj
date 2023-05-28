@@ -1,4 +1,4 @@
-const mongoose = require("mongoose")
+import mongoose from 'mongoose';
 
 const ApplicationSchema = new mongoose.Schema({
     status: {type: String, enum: ["open", "pending", "closed", "cleared"], required: true},
@@ -16,4 +16,4 @@ const ApplicationSchema = new mongoose.Schema({
     }
 })
 
-module.exports = mongoose.model("application", ApplicationSchema)
+mongoose.model("application", ApplicationSchema)

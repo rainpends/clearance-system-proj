@@ -1,5 +1,5 @@
 {
-  "name": "client",
+  "name": "frontend",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -8,8 +8,8 @@
     "@testing-library/user-event": "^13.5.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.11.2",
-    "react-scripts": "^2.1.3",
+    "react-router-dom": "^6.11.0",
+    "react-scripts": "5.0.1",
     "universal-cookie": "^4.0.4",
     "web-vitals": "^2.1.4"
   },
@@ -36,5 +36,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "description": "1. Make sure your MongoDB server is running\r   2. run `npm install` in both backend/ and frontend/ \r   3. run `npm start` in backend/ to start the backend API\r   4. run `npm start` in frontend/ to start the ReactJS app",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC"
 }
